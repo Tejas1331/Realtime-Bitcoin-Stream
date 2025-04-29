@@ -18,3 +18,25 @@ This project is designed to:
 
 ## 🧱 Project Structure
 
+
+
+Each folder contains a separate `README.md` to explain its specific purpose, setup, and execution steps.
+
+---
+
+## ⚙️ Technologies Used
+
+- **Python** (v3.8+)
+- **Apache Kafka** – for real-time data streaming
+- **Apache Spark** – for data processing and inference
+- **Streamlit** – for building the live dashboard
+- **Google Sheets API** – for logging real-time data and predictions
+- **Pandas / NumPy / Matplotlib** – for data manipulation and visualization
+- **Scikit-learn** – for model training
+- **Tensorflow/Keras** - LSTM Model
+
+---
+
+## 🛠️ Setup Instructions
+
+> ⚠️ Note: This project is designed to run in a development or production environment where Kafka and Spark are properly configured. You will need to set up those services manually or via Docker before running the full pipeline.
