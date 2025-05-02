@@ -84,7 +84,7 @@ Due to dependencies on Kafka, Spark, GCP, and HDFS, this project requires the fo
 
 ## 🔐 Legal & Compliance
 
-- Binance’s API can be used for free, and [as per Binance’s terms](https://binance-docs.github.io/apidocs/spot/en/#general-info), you're allowed to access public market data for research and non-commercial purposes.
+- Binance’s API can be used for free, and as per Binance’s terms, you're allowed to access public market data for research and non-commercial purposes.
 - Do **not** use this for live trading or financial advice. This is a demo project for educational purposes only.
 
 ---
