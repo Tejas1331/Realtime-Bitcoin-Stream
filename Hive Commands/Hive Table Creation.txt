@@ -1,0 +1,23 @@
+1.) Hive External table command - 
+
+CREATE EXTERNAL TABLE IF NOT EXISTS bitcoin_data (
+    minute INT,
+    price DOUBLE
+)
+PARTITIONED BY (
+    year INT,
+    month INT,
+    day INT,
+    hour INT
+)
+STORED AS PARQUET
+LOCATION '/bitcoin_stream_new';
+
+2.) Setting the column headers
+
+set hive.cli.print.header=true;
+
+
+3.) Updating the metadata of the external table
+
+MSCK REPAIR TABLE bitcoin_data;
