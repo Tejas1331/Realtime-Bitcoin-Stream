@@ -9,9 +9,9 @@ This project builds a real-time Bitcoin price tracking and prediction system usi
 ```
 bitcoin-realtime-pipeline/
 │
-├── file1_producer.py           # Streams real-time BTC/USDT trade data from Binance to Kafka
-├── file2_consumer_predictor.py # Consumes Kafka messages, performs aggregation + prediction, logs to Google Sheets
-├── file3_streamlit_dashboard.py# Streamlit dashboard to visualize actual vs predicted Bitcoin prices
+├── Bitcoin Realtime Stream Producer.py           # Streams real-time BTC/USDT trade data from Binance to Kafka
+├── LSTM realtime prediction to Google sheets.ipynb # Consumes Kafka messages, performs aggregation + prediction, logs to Google Sheets
+├── Streamlit-dashboard.py# Streamlit dashboard to visualize actual vs predicted Bitcoin prices
 ├── bitcoin_lstm_model_with_buffer_Mark-2.keras # Pre-trained LSTM model (required)
 ├── your-creds.json             # Google Service Account credentials (required for Google Sheets access)
 └── README.md                   # You are here
@@ -87,17 +87,17 @@ client_x509_cert_url = "..."
 
 ## ▶️ How It Works
 
-### 🧩 1. **`file1_producer.py`**  
+### 🧩 1. **`Bitcoin Realtime Stream Producer.py`**  
 Connects to Binance WebSocket, consumes live `btcusdt@trade` prices, and pushes them to the Kafka topic `bitcoin_stream` using Avro serialization.
 
-### 📉 2. **`file2_consumer_predictor.py`**  
+### 📉 2. **`LSTM realtime prediction to Google sheets.ipynb`**  
 Consumes from the `bitcoin_stream` topic. It:
 - Aggregates prices per minute.
 - Maintains a buffer of 60 minutes.
 - Uses an LSTM model to predict the price 2 minutes ahead.
 - Logs `timestamp`, `1-min average price`, and `prediction` to Google Sheets.
 
-### 📊 3. **`file3_streamlit_dashboard.py`**  
+### 📊 3. **`Streamlit-dashboard.py`**  
 Fetches data from Google Sheets and renders an interactive, auto-updating dashboard using Streamlit:
 - Line chart comparing actual vs predicted Bitcoin prices
 - Live refresh every few seconds
@@ -118,13 +118,13 @@ Run each of these scripts in separate terminals:
 
 ```bash
 # Terminal 1: WebSocket Producer
-python file1_producer.py
+python Bitcoin Realtime Stream Producer.py 
 
 # Terminal 2: Kafka Consumer & Predictor
-python file2_consumer_predictor.py
+python LSTM realtime prediction to Google sheets.ipynb
 
 # Terminal 3: Streamlit Dashboard
-streamlit run file3_streamlit_dashboard.py
+streamlit run Streamlit-dashboard.py
 ```
 
 ---
@@ -139,5 +139,6 @@ streamlit run file3_streamlit_dashboard.py
 ## 📧 Contact
 
 Feel free to reach out for collaborations or queries!
+Email at - tejas.joshi959999@gmail.com
 
 ---
