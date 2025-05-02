@@ -17,27 +17,26 @@ The system is capable of:
 project-root/
 │
 ├── 1_Hadoop_Commands/
-│   └── hadoop_commands.txt               # Basic Hadoop commands used during the project
+│   └── Hadoop Necessary Commands.txt               # Basic Hadoop commands used during the project
 │
 ├── 2_Hive_Commands/
-│   └── hive_table_creation.hql          # HiveQL commands to create and manage tables
+│   └── Hive Table Creation.txt          # HiveQL commands to create and manage tables
 │
-├── 3_Kafka_Schema/
-│   └── schema.avsc                      # Avro schema for Kafka key and value messages
+├── 3_Kafka/
+│   └── Kafka Schema for Key and Value.txt                      # Avro schema for Kafka key and value messages
 │
 ├── 4_LSTM_Model/
-│   ├── preprocess.py                    # Data preprocessing scripts
-│   ├── train_lstm.py                    # Code to train LSTM model
-│   └── model_utils.py                   # Helper functions for the LSTM model
+│   ├── Bitcoin data collector for LSTM model.py       # Collecting data for training of LSTM model
+│   └── lstm_model_training.ipynb                 # LSTM model training using the collected data
 │
-├── 5_Kafka_Spark_HDFS_Integration/
-│   ├── kafka_consumer.py                # Consumes Kafka stream and processes it with Spark
-│   └── spark_hdfs_sink.py               # Dumps aggregated results into HDFS
+├── 5_ Kafka to HDFS Spark Stream/
+│   └── Bitcoin_Consumer-Spark-HDFS.ipynb      # Processes results from kafka and dumps aggregated results into HDFS
+│   
 │
-├── 6_RealTime_Streaming/
-│   ├── binance_producer.py              # Streams real-time price data from Binance to Kafka
-│   ├── spark_aggregator_gcp.py          # Spark consumer that aggregates and stores in Google Sheets
-│   └── streamlit_dashboard.py           # Visual dashboard showing live price and predictions
+├── 6_Real-time Prediction on Streamlit/
+│   ├── Bitcoin Realtime Stream Producer.py             # Streams real-time price data from Binance to Kafka
+│   ├── LSTM realtime prediction to Google sheets.ipynb         # Spark consumer that aggregates and stores data and prediction in Google Sheets for streamlit to read from.
+│   └── Streamlit-dashboard.py          # Visual dashboard showing live price and predictions
 │
 └── README.md                            # This master README
 ```
@@ -62,7 +61,7 @@ project-root/
 ## 📌 Key Features
 
 - **Modular architecture** with separate components for ingestion, processing, modeling, and visualization.
-- **Real-time aggregation** and prediction.
+- **Real-time aggregation and prediction**.
 - **Multiple sinks**: Data is stored in both HDFS (for querying via Hive) and Google Sheets (for easy sharing).
 - **Visualization** built with Streamlit for end-users to see predictions and live data.
 
@@ -72,13 +71,13 @@ project-root/
 
 Due to dependencies on Kafka, Spark, GCP, and HDFS, this project requires the following setup (not plug-and-play):
 
-- Kafka broker running (local or on GCP)
-- Spark environment configured (GCP or local)
-- HDFS cluster running
+- Kafka broker running (on Confluent)
+- Spark environment configured (GCP)
+- HDFS cluster running (GCP)
 - Hive installed and connected to HDFS
 - Binance API key (if using authenticated endpoints)
 - Google Sheets API credentials (for write access)
-- Python (with libraries: `pyspark`, `kafka-python`, `streamlit`, `tensorflow`, etc.)
+- Python (with libraries: `pyspark`, `confluent-kafka`, `streamlit`, `tensorflow`, etc.)
 
 ---
 
