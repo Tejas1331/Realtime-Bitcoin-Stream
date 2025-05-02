@@ -1,47 +1,73 @@
-# 📈 Real-Time Bitcoin Price Prediction
+# 🪙 Real-Time Bitcoin Price Prediction and Streaming Dashboard
 
-This project contains three Python scripts that together build, predict, and visualize real-time Bitcoin prices with a 2-minute offset using a machine learning model and a Google Sheet as the data store.
+This project builds a real-time Bitcoin price tracking and prediction system using Binance WebSocket API, Kafka, an LSTM model for forecasting, Google Sheets for logging, and a Streamlit dashboard for visualization.
 
-## 📁 Contents
+---
 
-- **model_training_and_pipeline.py**  
-  Trains an XGBoost regression model on historical Bitcoin data and saves the preprocessing pipeline.
+## 📁 Project Structure
 
-- **preprocessing_and_prediction.py**  
-  Loads the latest data, applies the saved pipeline, makes a t+2 price prediction, and logs the result to Google Sheets.
+```
+bitcoin-realtime-pipeline/
+│
+├── file1_producer.py           # Streams real-time BTC/USDT trade data from Binance to Kafka
+├── file2_consumer_predictor.py # Consumes Kafka messages, performs aggregation + prediction, logs to Google Sheets
+├── file3_streamlit_dashboard.py# Streamlit dashboard to visualize actual vs predicted Bitcoin prices
+├── bitcoin_lstm_model_with_buffer_Mark-2.keras # Pre-trained LSTM model (required)
+├── your-creds.json             # Google Service Account credentials (required for Google Sheets access)
+└── README.md                   # You are here
+```
 
-- **real_time_streamlit_dashboard.py**  
-  A Streamlit dashboard that reads real-time data from Google Sheets and displays:
-  - Actual vs. Predicted prices (live plot)
-  - Buy/Sell signals
-  - Simulated profit/loss
+---
 
-## ⚙️ How to Use
+## 🚀 Features
 
-1. **Train the Model:**
-   ```bash
-   python model_training_and_pipeline.py
-   ```
+- 🔁 Real-time Bitcoin trade data ingestion via Binance WebSocket API
+- 📤 Kafka-based message pipeline with Avro serialization
+- 🤖 LSTM-based prediction of future Bitcoin prices (2 minutes ahead)
+- 🧾 Live data logging (actual + predicted prices) into a Google Sheet
+- 📊 Interactive Streamlit dashboard to visualize price trends and model predictions
 
-2. **Run Real-Time Prediction:**
-   ```bash
-   python preprocessing_and_prediction.py
-   ```
+---
 
-3. **Launch Streamlit Dashboard:**
-   ```bash
-   streamlit run real_time_streamlit_dashboard.py
-   ```
+## 🛠️ Requirements
 
-Make sure you have:
-- A trained model and preprocessing pipeline saved (done in step 1).
-- A Google Sheet shared with your Google Service Account.
-- Google Sheets API credentials available via `.streamlit/secrets.toml`.
+Install dependencies:
 
-## 🔐 Google Sheets API Setup
+```bash
+pip install -r requirements.txt
+```
 
-1. Enable the Google Sheets API and create a service account key.
-2. Store your credentials in `.streamlit/secrets.toml`:
+**`requirements.txt`** should include:
+```
+websocket-client
+confluent_kafka
+gspread
+oauth2client
+numpy
+pandas
+tensorflow
+matplotlib
+streamlit
+```
+
+---
+
+## 🔑 Setup
+
+### 1. Kafka & Schema Registry
+- Set up a Kafka cluster and Schema Registry.
+- Replace the placeholder values in each file:
+  - `bootstrap.servers`, `sasl.username`, `sasl.password`
+  - `schema_registry.url`, `schema_registry.basic.auth.user.info`
+
+### 2. Google Sheets
+- Create a Google Sheet titled **"BitcoinRealtimeData"**
+- Share the sheet with your Google Service Account email.
+- Place your credentials in a file named `your-creds.json` (for local use) and in Streamlit secrets (for deployment).
+
+### 3. Streamlit Secrets Setup
+
+Create a `.streamlit/secrets.toml`:
 
 ```toml
 [gcp]
@@ -51,12 +77,67 @@ private_key_id = "..."
 private_key = "..."
 client_email = "..."
 client_id = "..."
-token_uri = "https://oauth2.googleapis.com/token"
+auth_uri = "..."
+token_uri = "..."
+auth_provider_x509_cert_url = "..."
+client_x509_cert_url = "..."
 ```
-
-3. Share your target Google Sheet with `client_email`.
 
 ---
 
-This folder forms a minimal real-time ML pipeline connected to a live dashboard. Ideal for Bitcoin price experiments.
+## ▶️ How It Works
+
+### 🧩 1. **`file1_producer.py`**  
+Connects to Binance WebSocket, consumes live `btcusdt@trade` prices, and pushes them to the Kafka topic `bitcoin_stream` using Avro serialization.
+
+### 📉 2. **`file2_consumer_predictor.py`**  
+Consumes from the `bitcoin_stream` topic. It:
+- Aggregates prices per minute.
+- Maintains a buffer of 60 minutes.
+- Uses an LSTM model to predict the price 2 minutes ahead.
+- Logs `timestamp`, `1-min average price`, and `prediction` to Google Sheets.
+
+### 📊 3. **`file3_streamlit_dashboard.py`**  
+Fetches data from Google Sheets and renders an interactive, auto-updating dashboard using Streamlit:
+- Line chart comparing actual vs predicted Bitcoin prices
+- Live refresh every few seconds
+
+---
+
+## 🧠 Model Details
+
+- The LSTM model (`bitcoin_lstm_model_with_buffer_Mark-2.keras`) expects a 60-minute window of average prices.
+- Prediction is made for the price 2 minutes into the future.
+- Input data is min-max scaled dynamically within the 60-min window + buffer to handle volatility.
+
+---
+
+## 🧪 Running the Pipeline
+
+Run each of these scripts in separate terminals:
+
+```bash
+# Terminal 1: WebSocket Producer
+python file1_producer.py
+
+# Terminal 2: Kafka Consumer & Predictor
+python file2_consumer_predictor.py
+
+# Terminal 3: Streamlit Dashboard
+streamlit run file3_streamlit_dashboard.py
 ```
+
+---
+
+## 📦 Notes
+
+- Ensure your Kafka and Schema Registry services are publicly accessible or run in the same network environment.
+- Adjust any model prediction smoothing, scaling logic, or window size based on real-world accuracy.
+
+---
+
+## 📧 Contact
+
+Feel free to reach out for collaborations or queries!
+
+---
