@@ -6,7 +6,7 @@ This folder contains two files:
 
 ---
 
-### 🧩 File 1: `bitcoin_price_stream.py` (WebSocket Stream to CSV)
+### 🧩 File 1: `Bitcoin data collector for LSTM model.py` (WebSocket Stream to CSV)
 
 - **Purpose:**  
   Collects live trade data for Bitcoin from Binance via WebSocket and aggregates prices **per minute**.
@@ -20,7 +20,7 @@ This folder contains two files:
 
 ---
 
-### 📈 File 2: `lstm_model_train.py` (Model Training and Evaluation)
+### 📈 File 2: `lstm_model_train.ipynb` (Model Training and Evaluation)
 
 - **Purpose:**  
   Reads the `bitcoin_price_stream.csv` file and trains an LSTM (Long Short-Term Memory) neural network model to predict the next Bitcoin price.
