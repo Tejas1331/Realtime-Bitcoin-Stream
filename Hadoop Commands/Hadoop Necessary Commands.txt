@@ -1,0 +1,11 @@
+1.) Creating Directory in Hadoop
+
+hadoop fs -mkdir /trial
+
+2.) Deleting Directory in Hadoop recusrsively (as in deleting the contents of the directory first and then the directory)
+
+hadoop fs -rm -r /trial
+
+3.) Navigating to the desired directory (after / you can mention the path)
+
+hadoop fs -ls /
