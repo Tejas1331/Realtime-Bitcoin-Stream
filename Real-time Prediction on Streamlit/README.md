@@ -1,6 +1,3 @@
-### ✅ Minimal `README.md` for your 3-file folder
-
-```markdown
 # 📈 Real-Time Bitcoin Price Prediction
 
 This project contains three Python scripts that together build, predict, and visualize real-time Bitcoin prices with a 2-minute offset using a machine learning model and a Google Sheet as the data store.
