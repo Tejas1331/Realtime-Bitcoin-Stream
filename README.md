@@ -49,12 +49,12 @@ project-root/
 | Component               | Technology Used                   |
 |------------------------|-----------------------------------|
 | Data Source            | Binance API                       |
-| Messaging Queue        | Apache Kafka                      |
-| Stream Processing      | Apache Spark (running on GCP)     |
+| Messaging Queue        | Confluent Kafka                   |
+| Stream Processing      | Spark (running on GCP)            |
 | Storage                | HDFS, Google Sheets               |
 | Model                  | LSTM Neural Network (TensorFlow/Keras) |
 | Visualization          | Streamlit                         |
-| Query Layer            | Apache Hive                       |
+| Query Layer            | Hive (running on GCP)                              |
 | Orchestration          | Manual + Custom Scripts           |
 
 ---
