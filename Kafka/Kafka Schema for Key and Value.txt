@@ -1,0 +1,34 @@
+1.) Schema for Value (Avro)
+
+{
+  "fields": [
+    {
+      "logicalType": "timestamp-millis",
+      "name": "timestamp",
+      "type": "string"
+    },
+    {
+      "name": "price",
+      "type": "string"
+    }
+  ],
+  "name": "BitcoinPrice",
+  "namespace": "Bitcoin_Topic",
+  "type": "record"
+}
+
+
+2.) Schema for Key (Avro)
+
+{
+  "fields": [
+    {
+      "logicalType": "timestamp-millis",
+      "name": "timestamp",
+      "type": "string"
+    }
+  ],
+  "name": "BitcoinKey",
+  "namespace": "Bitcoin_topic_key",
+  "type": "record"
+}
