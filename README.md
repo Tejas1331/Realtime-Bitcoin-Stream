@@ -11,6 +11,13 @@ The system is capable of:
 
 ---
 
+## 🖥️ Project Dashboard
+
+![Streamlit Dashboard](images/architecture.png)
+
+
+---
+
 ## 📁 Project Structure
 
 ```
