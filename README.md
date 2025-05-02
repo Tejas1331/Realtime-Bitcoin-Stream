@@ -13,7 +13,7 @@ The system is capable of:
 
 ## 🖥️ Project Dashboard
 
-![Streamlit Dashboard](images/architecture.png)
+![Streamlit Dashboard](Images/Screenshot%202025-04-29%20215116.png)
 
 
 ---
