@@ -90,6 +90,6 @@ Due to dependencies on Kafka, Spark, GCP, and HDFS, this project requires the fo
 
 ## 📎 License
 
-This project is licensed under the MIT LICENSE. This project is for educational and research purposes. You are free to fork, learn from, and build upon this for your own research.
+This project is licensed under the ![MIT LICENSE](LICENSE). This project is for educational and research purposes. You are free to fork, learn from, and build upon this for your own research.
 
 ---
