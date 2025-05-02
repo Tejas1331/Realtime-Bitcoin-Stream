@@ -1,5 +1,3 @@
----
-
 # 📊 Real-Time Crypto Price Forecasting and Aggregation using Kafka, Spark, LSTM, and Streamlit
 
 This project demonstrates an end-to-end real-time data pipeline and forecasting system for cryptocurrency prices (e.g., Bitcoin) using a combination of **Apache Kafka**, **Apache Spark**, **Google Cloud Platform**, **Hadoop HDFS**, **Hive**, **LSTM neural networks**, and **Streamlit**.
@@ -96,5 +94,3 @@ Due to dependencies on Kafka, Spark, GCP, and HDFS, this project requires the fo
 This project is for educational and non-commercial use. You are free to fork, learn from, and build upon this for your own research.
 
 ---
-
-Would you like me to help create individual README files for each folder as well?
