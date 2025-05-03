@@ -3,7 +3,7 @@
 This project demonstrates an end-to-end real-time data pipeline and forecasting system for cryptocurrency prices (e.g., Bitcoin) using a combination of **Confluent Kafka**, **GCP Spark**, **Google Cloud Platform**, **Hadoop HDFS**, **Hive**, **LSTM neural networks**, and **Streamlit**.
 
 The system is capable of:
-- Streaming real-time price data from Binance.
+- Streaming real-time price data from Binance to Kafka.
 - Processing and aggregating data using Spark on GCP.
 - Forecasting prices using an LSTM model.
 - Storing data in HDFS and Google Sheets.
